@@ -11,10 +11,10 @@ diff --git a/process.hpp b/process.hpp
 index f6a9f0e..cbbdd46 100644
 --- a/process.hpp
 +++ b/process.hpp
-@@ -19,7 +19,11 @@ class Process {
+@@ -19,7 +19,11 @@ public:
  #ifdef _WIN32
-   typedef unsigned long id_type; //Process id type
-   typedef void *fd_type;         //File descriptor type
+   typedef unsigned long id_type; // Process id type
+   typedef void *fd_type;         // File descriptor type
 -#ifdef UNICODE
 +// In conda-forge, we are building the library without UNICODE support,
 +// so we hardcode the non-UNICODE interface to ensure that the downstream
