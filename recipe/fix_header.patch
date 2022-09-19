@@ -1,0 +1,26 @@
+From 8cce7e6a163ba302cb58d2497b745ad795825d3c Mon Sep 17 00:00:00 2001
+From: Silvio Traversaro <silvio@traversaro.it>
+Date: Mon, 19 Sep 2022 09:46:49 +0200
+Subject: [PATCH] Update process.hpp
+
+---
+ process.hpp | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/process.hpp b/process.hpp
+index f6a9f0e..cbbdd46 100644
+--- a/process.hpp
++++ b/process.hpp
+@@ -19,7 +19,11 @@ class Process {
+ #ifdef _WIN32
+   typedef unsigned long id_type; //Process id type
+   typedef void *fd_type;         //File descriptor type
+-#ifdef UNICODE
++// In conda-forge, we are building the library without UNICODE support,
++// so we hardcode the non-UNICODE interface to ensure that the downstream
++// compilation unit always "see" the std::string API even if they are compiled
++// with UNICODE defined
++#if 0
+   typedef std::wstring string_type;
+ #else
+   typedef std::string string_type;
